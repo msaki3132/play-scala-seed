@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+###
+ #  summary: create a card
+ #  tags:
+ #    - Card Endpoints
+ #  responses:
+ #    200:
+ #      description: success
+ #      schema:
+ ###
+GET     /                           controllers.HomeController.index()
+
+###
+ #  summary: create a card
+ #  tags:
+ #    - Card Endpoints
+ #  responses:
+ #    200:
+ #      description: success
+ #      schema:
+ ###
+GET     /index                      controllers.HomeController.index()
+
+->  /admin admin.Routes

@@ -1,0 +1,10 @@
+###
+ #  summary: admin index
+ #  tags:
+ #    - Card Endpoints
+ #  responses:
+ #    200:
+ #      description: success
+ #      schema:
+  ###
+GET /index                  controllers.admin.AdminController.index()
