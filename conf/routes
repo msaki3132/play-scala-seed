@@ -7,7 +7,7 @@
 ###
  #  summary: create a card
  #  tags:
- #    - Card Endpoints
+ #    - root
  #  responses:
  #    200:
  #      description: success
@@ -18,7 +18,7 @@ GET     /                           controllers.HomeController.index()
 ###
  #  summary: create a card
  #  tags:
- #    - Card Endpoints
+ #    - root
  #  responses:
  #    200:
  #      description: success

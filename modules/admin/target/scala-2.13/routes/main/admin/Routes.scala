@@ -58,7 +58,7 @@ class Routes(
       """##
   summary: admin index
   tags:
-    - Card Endpoints
+    - admin
   responses:
     200:
       description: success

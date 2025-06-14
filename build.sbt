@@ -13,6 +13,9 @@ lazy val root = (project in file("."))
   .enablePlugins(SwaggerPlugin)
   .dependsOn(admin)
   .aggregate(admin)
+  .settings(
+    swaggerTarget := file("docs")
+  )
 
 
 libraryDependencies += guice
