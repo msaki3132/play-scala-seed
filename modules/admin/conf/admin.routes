@@ -6,5 +6,5 @@
  #    200:
  #      description: success
  #      schema:
-  ###
+###
 GET /index                  controllers.admin.AdminController.index()

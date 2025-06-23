@@ -27,3 +27,163 @@ GET     /                           controllers.HomeController.index()
 GET     /index                      controllers.HomeController.index()
 
 ->  /admin admin.Routes
+
+# Bigtable API endpoints
+###
+ #  summary: List all tables in the Bigtable instance
+ #  tags:
+ #    - bigtable
+ #  responses:
+ #    200:
+ #      description: List of tables
+ #      schema:
+ #        type: object
+ #        properties:
+ #          tables:
+ #            type: array
+ #            items:
+ #              type: string
+ ###
+GET     /api/bigtable/tables                controllers.BigtableController.listTables()
+
+###
+ #  summary: Create a new table
+ #  tags:
+ #    - bigtable
+ #  requestBody:
+ #    description: Table creation parameters
+ #    required: true
+ #    content:
+ #      application/json:
+ #        schema:
+ #          type: object
+ #          required:
+ #            - tableId
+ #            - families
+ #          properties:
+ #            tableId:
+ #              type: string
+ #            families:
+ #              type: object
+ #              additionalProperties:
+ #                type: integer
+ #  responses:
+ #    201:
+ #      description: Table created successfully
+ ###
+POST    /api/bigtable/tables                controllers.BigtableController.createTable()
+
+###
+ #  summary: Delete a table
+ #  tags:
+ #    - bigtable
+ #  parameters:
+ #    - name: tableId
+ #      in: path
+ #      required: true
+ #      schema:
+ #        type: string
+ #  responses:
+ #    200:
+ #      description: Table deleted successfully
+ ###
+DELETE  /api/bigtable/tables/:tableId       controllers.BigtableController.deleteTable(tableId: String)
+
+###
+ #  summary: Read a row from a table
+ #  tags:
+ #    - bigtable
+ #  parameters:
+ #    - name: tableId
+ #      in: path
+ #      required: true
+ #      schema:
+ #        type: string
+ #    - name: rowKey
+ #      in: path
+ #      required: true
+ #      schema:
+ #        type: string
+ #  responses:
+ #    200:
+ #      description: Row data
+ #    404:
+ #      description: Row not found
+ ###
+GET     /api/bigtable/tables/:tableId/rows/:rowKey  controllers.BigtableController.readRow(tableId: String, rowKey: String)
+
+###
+ #  summary: Write a value to a row
+ #  tags:
+ #    - bigtable
+ #  requestBody:
+ #    description: Value to write
+ #    required: true
+ #    content:
+ #      application/json:
+ #        schema:
+ #          type: object
+ #          required:
+ #            - tableId
+ #            - rowKey
+ #            - family
+ #            - qualifier
+ #            - value
+ #          properties:
+ #            tableId:
+ #              type: string
+ #            rowKey:
+ #              type: string
+ #            family:
+ #              type: string
+ #            qualifier:
+ #              type: string
+ #            value:
+ #              type: string
+ #  responses:
+ #    200:
+ #      description: Value written successfully
+ ###
+POST    /api/bigtable/rows                  controllers.BigtableController.writeValue()
+
+###
+ #  summary: Delete a row from a table
+ #  tags:
+ #    - bigtable
+ #  parameters:
+ #    - name: tableId
+ #      in: path
+ #      required: true
+ #      schema:
+ #        type: string
+ #    - name: rowKey
+ #      in: path
+ #      required: true
+ #      schema:
+ #        type: string
+ #  responses:
+ #    200:
+ #      description: Row deleted successfully
+ ###
+DELETE  /api/bigtable/tables/:tableId/rows/:rowKey  controllers.BigtableController.deleteRow(tableId: String, rowKey: String)
+
+###
+ #  summary: Scan rows in a table
+ #  tags:
+ #    - bigtable
+ #  parameters:
+ #    - name: tableId
+ #      in: path
+ #      required: true
+ #      schema:
+ #        type: string
+ #    - name: limit
+ #      in: query
+ #      required: false
+ #      schema:
+ #        type: integer
+ #  responses:
+ #    200:
+ #      description: List of rows
+ ###
+GET     /api/bigtable/tables/:tableId/rows  controllers.BigtableController.scanRows(tableId: String, limit: Option[Int])

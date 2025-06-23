@@ -3,7 +3,8 @@ organization := "com.monoxer"
 
 version := "1.0-SNAPSHOT"
 
-scalaVersion := "2.13.16"
+//scalaVersion := "2.13.16"
+scalaVersion := "3.3.3"
 
 lazy val admin = (project in file("modules/admin")).enablePlugins(PlayScala)
 
@@ -20,6 +21,13 @@ lazy val root = (project in file("."))
 
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
+
+// Google Cloud Bigtable dependencies
+libraryDependencies ++= Seq(
+  "com.google.cloud" % "google-cloud-bigtable" % "2.39.0",
+  "com.google.cloud" % "google-cloud-bigtable-emulator" % "0.164.0" % Test,
+  "com.typesafe" % "config" % "1.4.3"
+)
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.monoxer.controllers._"
