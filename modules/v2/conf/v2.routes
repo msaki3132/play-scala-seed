@@ -1,0 +1,10 @@
+###
+ #  summary: v2 index
+ #  tags:
+ #    - v2
+ #  responses:
+ #    200:
+ #      description: success
+ #      schema:
+###
+GET /index                  controllers.v2.V2Controller.index()

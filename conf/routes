@@ -27,3 +27,5 @@ GET     /                           controllers.HomeController.index()
 GET     /index                      controllers.HomeController.index()
 
 ->  /admin admin.Routes
+->  /v2    v2.Routes
+->  /core  core.Routes

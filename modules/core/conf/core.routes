@@ -1,0 +1,10 @@
+###
+ #  summary: core index
+ #  tags:
+ #    - core
+ #  responses:
+ #    200:
+ #      description: success
+ #      schema:
+###
+GET /index                  controllers.core.CoreController.index()
